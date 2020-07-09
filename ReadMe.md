@@ -18,5 +18,6 @@ Resources: https://github.com/0x000cb/emb-vac
 
   - Redesign
   - Automatically close the bypasser window
+  - Fixing the broken Icon
 
 
