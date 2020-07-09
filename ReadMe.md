@@ -21,3 +21,6 @@ Resources: https://github.com/0x000cb/emb-vac
   - Fixing the broken Icon
 
 
+# Contact
+ - Discord: Aiden#7949
+ - Twitter: @derfipsy
