@@ -1,0 +1,9 @@
+C:\Users\User\Desktop\Injector\bin\Debug\net461\Injector.exe.config
+C:\Users\User\Desktop\Injector\bin\Debug\net461\Injector.exe
+C:\Users\User\Desktop\Injector\bin\Debug\net461\Injector.pdb
+C:\Users\User\Desktop\Injector\obj\Debug\net461\Injector.csprojAssemblyReference.cache
+C:\Users\User\Desktop\Injector\obj\Debug\net461\Injector.Injector.Form1.resources
+C:\Users\User\Desktop\Injector\obj\Debug\net461\Injector.csproj.GenerateResource.cache
+C:\Users\User\Desktop\Injector\obj\Debug\net461\Injector.csproj.CoreCompileInputs.cache
+C:\Users\User\Desktop\Injector\obj\Debug\net461\Injector.exe
+C:\Users\User\Desktop\Injector\obj\Debug\net461\Injector.pdb
