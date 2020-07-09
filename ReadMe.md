@@ -1,5 +1,6 @@
 # TrustFucker
 <p align="center">
+  <img src="IMAGES/preview.png">
 ![Image](IMAGES/preview.png)
 </p>
 
