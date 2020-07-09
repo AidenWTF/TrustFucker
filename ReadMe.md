@@ -1,7 +1,7 @@
 # TrustFucker
 <p align="center">
   <img src="IMAGES/preview.png">
-![Image](IMAGES/preview.png)
+
 </p>
 
 TrustFucker is an CSGO Injector. that automatically bypasses the new VAC update to allows you an easy injection.
