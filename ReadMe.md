@@ -13,6 +13,7 @@ TrustFucker is an CSGO Injector. that automatically bypasses the new VAC update 
   - Click Inject
   - You can close the the popup window after the Injection completed
 
+Resources: https://github.com/0x000cb/emb-vac
 # To-Do!
 
   - Redesign
