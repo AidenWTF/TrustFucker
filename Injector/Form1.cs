@@ -77,8 +77,15 @@ namespace Injector
 				MessageBox.Show("No DLL Selected, Please select a DLL", "Error");
 				return;
 			}
+			Process proce = new Process();
+			ProcessStartInfo info =
+			new ProcessStartInfo("emb.exe");
+			info.WindowStyle = ProcessWindowStyle.Hidden;
+			info.UseShellExecute = true;
+			info.Verb = "runas";
+			proce.StartInfo = info;
+			proce.Start();
 			
-			Process emb =  System.Diagnostics.Process.Start("emb.exe");
 			
 			Thread.Sleep(1000);
 		
