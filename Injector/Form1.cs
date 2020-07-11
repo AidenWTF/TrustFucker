@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 
+
 namespace Injector
 {
 	public class Form1 : Form
@@ -23,8 +24,9 @@ namespace Injector
 		private Button button1;
 
 		private Button button2;
-
-		private OpenFileDialog openFileDialog1;
+        private ComboBox comboBox1;
+        private OpenFileDialog openFileDialog1;
+		
 
 		public Form1()
 		{
@@ -33,6 +35,13 @@ namespace Injector
 
 		private void Form1_Load(object sender, EventArgs e)
 		{
+
+			comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
+			
+			comboBox1.Items.Add ("Normal Injection");
+			comboBox1.Items.Add ("Alternative Injection");
+			comboBox1.SelectedIndex = 0;
+
 			if (!File.Exists(myDoc))
 			{
 				File.Create(myDoc).Dispose();
@@ -46,6 +55,7 @@ namespace Injector
 
 		private void button2_Click(object sender, EventArgs e)
 		{
+			
 			OpenFileDialog openFileDialog = new OpenFileDialog
 			{
 				InitialDirectory = line,
@@ -72,32 +82,69 @@ namespace Injector
 
 		private void button1_Click(object sender, EventArgs e)
 		{
-			if (button2.Text == "Select DLL")
+			Process[] pname = Process.GetProcessesByName("csgo");
+			if (pname.Length > 0)
 			{
-				MessageBox.Show("No DLL Selected, Please select a DLL", "Error");
-				return;
+				if (button2.Text == "Select DLL")
+				{
+					MessageBox.Show("No DLL Selected, Please select a DLL", "Error");
+					return;
+				}
+				else if (comboBox1.SelectedIndex == 0)
+				{
+					try
+					{
+						Process proce = new Process();
+						ProcessStartInfo info =
+						new ProcessStartInfo(@"bin\emb.exe");
+						info.WindowStyle = ProcessWindowStyle.Hidden;
+						info.UseShellExecute = true;
+						info.Verb = "runas";
+						proce.StartInfo = info;
+						proce.Start();
+					}
+					catch (System.ComponentModel.Win32Exception ex)
+					{
+						MessageBox.Show("emb.exe not found \nPlease place emb.exe in bin/", "Error");
+						return;
+					}
+
+					Thread.Sleep(1000);
+
+					string strDLLName = dllFile;
+					string proc = "csgo";
+					int processId = GetProcessId(proc);
+					if (processId >= 0)
+					{
+						IntPtr hProcess = OpenProcess(2035711u, 1, processId);
+						bool flag = false;
+						InjectDLL(hProcess, strDLLName);
+					}
+					return;
+				}
+
+				//Manual Map
+				else if (comboBox1.SelectedIndex == 1)
+				{
+					try
+					{
+						System.Diagnostics.Process.Start(@"bin\ManualMap.exe", "csgo " + dllFile.ToString());
+					}
+					catch (System.ComponentModel.Win32Exception ex)
+					{
+						MessageBox.Show("ManualMap.exe not found \nPlease place ManualMap.exe in bin/", "Error");
+						return;
+					}
+
+
+				}
 			}
-			Process proce = new Process();
-			ProcessStartInfo info =
-			new ProcessStartInfo("emb.exe");
-			info.WindowStyle = ProcessWindowStyle.Hidden;
-			info.UseShellExecute = true;
-			info.Verb = "runas";
-			proce.StartInfo = info;
-			proce.Start();
-			
-			
-			Thread.Sleep(1000);
-		
-			string strDLLName = dllFile;
-			string proc = "csgo";
-			int processId = GetProcessId(proc);
-			if (processId >= 0)
+			else
 			{
-				IntPtr hProcess = OpenProcess(2035711u, 1, processId);
-				bool flag = false;
-				InjectDLL(hProcess, strDLLName);
+				MessageBox.Show("CS:GO is not running","Error");
 			}
+
+			
 		}
 
 		[DllImport("kernel32")]
@@ -188,6 +235,7 @@ namespace Injector
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // button1
@@ -215,11 +263,21 @@ namespace Injector
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // comboBox1
+            // 
+            this.comboBox1.AccessibleDescription = "";
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(13, 110);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(375, 21);
+            this.comboBox1.TabIndex = 2;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(400, 113);
+            this.ClientSize = new System.Drawing.Size(400, 142);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
