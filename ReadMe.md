@@ -1,4 +1,6 @@
 # TrustFucker
+
+## Use at own risk.
 <p align="center">
   <img src="IMAGES/preview.png">
 
